@@ -7,6 +7,9 @@ class Board:
     def getBoardMatrix(self):
         return self.__boardMatrix
 
+    def getSize(self):
+        return (self.__rows, self.__rows)
+
     def setCell(self, row: int, col: int, value):
         self.__boardMatrix[row][col] = value
 
