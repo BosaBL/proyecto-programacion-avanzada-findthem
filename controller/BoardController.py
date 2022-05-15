@@ -35,6 +35,9 @@ class BoardController:
 
         self.__gameBoard.shuffleVector()
 
+    def boardSize(self):
+        return (self.__rows, self.__cols)
+
     def __repr__(self):
         return self.__gameBoard.getBoardMatrix()
 
