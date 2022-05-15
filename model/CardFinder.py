@@ -22,6 +22,7 @@ class CardFinder:
             cardId = card.split(".")[0]
             cardPath = os.path.join(self.getCardFolder(), card)
 
-            cardDict[cardId] = cardPath
+            if not cardId == "back":
+                cardDict[cardId] = cardPath
 
         return cardDict
