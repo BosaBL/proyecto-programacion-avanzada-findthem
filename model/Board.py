@@ -13,6 +13,9 @@ class Board:
     def setCell(self, row: int, col: int, value):
         self.__boardMatrix[row][col] = value
 
+    def getCell(self, row: int, col: int, value):
+        return self.__boardMatrix[row][col]
+
     def clearBoardMatrix(self):
         self.__boardMatrix = [
             [None for _ in range(self.__cols)] for _ in range(self.__rows)
