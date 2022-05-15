@@ -1,3 +1,6 @@
+from random import shuffle
+
+
 class Board:
     def __init__(self, rows: int, cols: int):
         self.__cols = cols
@@ -13,8 +16,8 @@ class Board:
     def setCell(self, row: int, col: int, value):
         self.__boardMatrix[row][col] = value
 
-    def getCell(self, row: int, col: int, value):
-        return self.__boardMatrix[row][col]
+    def shuffleMatrix(self):
+        shuffle(self.__boardMatrix)
 
     def clearBoardMatrix(self):
         self.__boardMatrix = [
