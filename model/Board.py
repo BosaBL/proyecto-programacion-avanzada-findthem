@@ -28,6 +28,9 @@ class Board:
     def appendItem(self, item):
         self.__boardVector.append(item)
 
+    def setItem(self, idx, item):
+        self.__boardVector[idx] = item
+
     def shuffleVector(self):
         shuffle(self.__boardVector)
 
