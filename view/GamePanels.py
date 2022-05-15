@@ -46,12 +46,13 @@ class GamePanel(wx.Panel):
 
         if not self.matrixBoard[cardPos] or cardPos in self.__pickedCards:
             return
+
         self.__pickedCards.append(cardPos)
 
         self.gridBoard.ClearGrid()
         imgPath = self.matrixBoard[cardPos].getPath()
         imgs = wx.Bitmap(imgPath, wx.BITMAP_TYPE_ANY)
-        imgs = self.scale_bitmap(imgs, 100, 150)
+        imgs = self.scaleBitmap(imgs, 100, 150)
         imagerenderers = MyImageRenderer(imgs)
         self.gridBoard.SetCellRenderer(int(cardPos[0]), int(cardPos[1]), imagerenderers)
 
@@ -69,21 +70,21 @@ class GamePanel(wx.Panel):
                 self.__pickedCards = []
                 return
             self.__pickedCards = []
-            wx.CallLater(0, self.turnBack())
+            wx.CallLater(0, self.turnBack)
 
     def turnBack(self):
 
         for i in range(self.matrixBoard.boardSize()[0]):
             for j in range(self.matrixBoard.boardSize()[1]):
                 if self.matrixBoard[(i, j)]:
-                    self.img = self.scale_bitmap(self.BACKCARD, 100, 150)
+                    self.img = self.scaleBitmap(self.BACKCARD, 100, 150)
                     self.imagerender = MyImageRenderer(self.img)
 
                     self.gridBoard.SetCellRenderer(i, j, self.imagerender)
                     self.gridBoard.SetColSize(j, self.img.GetWidth() + 5)
                     self.gridBoard.SetRowSize(i, self.img.GetHeight() + 5)
 
-    def scale_bitmap(self, bitmap, width, height):
+    def scaleBitmap(self, bitmap, width, height):
         image = wx.Bitmap.ConvertToImage(bitmap)
         image = image.Scale(width, height)
         result = wx.Bitmap(image)
