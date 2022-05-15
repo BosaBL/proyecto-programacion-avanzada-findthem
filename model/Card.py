@@ -5,7 +5,7 @@ Created on 03-05-2022
 """
 
 
-class Cart:
+class Card:
     def __init__(self, identifier: int, path: str):
         self.__id = identifier
         self.__imagePath = path
