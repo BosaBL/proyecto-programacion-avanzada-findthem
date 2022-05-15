@@ -10,13 +10,20 @@ class GamePanel(wx.Panel):
 
         self.matrixBoard = BoardController(rows, cols)
         self.matrixBoard.populateGameBoard()
-
         self.gridBoard = gridLib.Grid(self)
         self.gridBoard.CreateGrid(
-            self.matrixBoard.boardSize()[0], self.matrixBoard.boardSize()[1]
+            self.matrixBoard.boardSize()[0],
+            self.matrixBoard.boardSize()[1],
+            selmode=4,
+        )
+        self.gridBoard.SetDefaultCellBackgroundColour(
+            self.gridBoard.GetLabelBackgroundColour()
         )
         self.gridBoard.SetRowLabelSize(0)
         self.gridBoard.SetColLabelSize(0)
+        self.gridBoard.EnableEditing(False)
+        self.gridBoard.EnableDragColSize(False)
+        self.gridBoard.EnableDragRowSize(False)
 
         for i in range(self.matrixBoard.boardSize()[0]):
             for j in range(self.matrixBoard.boardSize()[1]):
@@ -25,8 +32,8 @@ class GamePanel(wx.Panel):
                 imagerender = MyImageRenderer(img)
 
                 self.gridBoard.SetCellRenderer(i, j, imagerender)
-                self.gridBoard.SetColSize(i, img.GetHeight() + 2)
-                self.gridBoard.SetRowSize(i, img.GetWidth() + 2)
+                self.gridBoard.SetColSize(j, img.GetWidth() + 5)
+                self.gridBoard.SetRowSize(i, img.GetHeight() + 5)
 
         self.sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.sizer.Add(self.gridBoard, 1, wx.EXPAND)
