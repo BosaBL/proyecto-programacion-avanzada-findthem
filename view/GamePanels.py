@@ -49,7 +49,6 @@ class GamePanel(wx.Panel):
 
         self.__pickedCards.append(cardPos)
 
-        self.gridBoard.ClearGrid()
         imgPath = self.matrixBoard[cardPos].getPath()
         imgs = wx.Bitmap(imgPath, wx.BITMAP_TYPE_ANY)
         imgs = self.scaleBitmap(imgs, 100, 150)
@@ -63,14 +62,13 @@ class GamePanel(wx.Panel):
             nextCard = self.matrixBoard[aux[1]].getId()
 
             if card == nextCard:
-                print("A")
-                self.gridBoard.ClearGrid()
                 self.matrixBoard[aux[0]] = None
                 self.matrixBoard[aux[1]] = None
-                self.__pickedCards = []
-                return
+            else:
+                wx.CallLater(250, self.turnBack)
             self.__pickedCards = []
-            wx.CallLater(0, self.turnBack)
+
+        self.gridBoard.ClearGrid()
 
     def turnBack(self):
 
@@ -83,10 +81,11 @@ class GamePanel(wx.Panel):
                     self.gridBoard.SetCellRenderer(i, j, self.imagerender)
                     self.gridBoard.SetColSize(j, self.img.GetWidth() + 5)
                     self.gridBoard.SetRowSize(i, self.img.GetHeight() + 5)
+        self.gridBoard.ClearGrid()
 
     def scaleBitmap(self, bitmap, width, height):
         image = wx.Bitmap.ConvertToImage(bitmap)
-        image = image.Scale(width, height)
+        image = image.Scale(width, height, wx.IMAGE_QUALITY_HIGH)
         result = wx.Bitmap(image)
         return result
 
