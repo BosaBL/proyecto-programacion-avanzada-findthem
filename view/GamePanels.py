@@ -51,7 +51,7 @@ class GamePanel(wx.Panel):
 
         imgPath = self.matrixBoard[cardPos].getPath()
         imgs = wx.Bitmap(imgPath, wx.BITMAP_TYPE_ANY)
-        imgs = self.scaleBitmap(imgs, 100, 150)
+        imgs = self.scaleBitmap(imgs, 75, 125)
         imagerenderers = MyImageRenderer(imgs)
         self.gridBoard.SetCellRenderer(int(cardPos[0]), int(cardPos[1]), imagerenderers)
 
@@ -75,7 +75,7 @@ class GamePanel(wx.Panel):
         for i in range(self.matrixBoard.boardSize()[0]):
             for j in range(self.matrixBoard.boardSize()[1]):
                 if self.matrixBoard[(i, j)]:
-                    self.img = self.scaleBitmap(self.BACKCARD, 100, 150)
+                    self.img = self.scaleBitmap(self.BACKCARD, 75, 125)
                     self.imagerender = MyImageRenderer(self.img)
 
                     self.gridBoard.SetCellRenderer(i, j, self.imagerender)
