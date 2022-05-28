@@ -10,7 +10,8 @@ class GamePanel(wx.Panel):
 
         self.cardTimer = wx.Timer()
 
-        self.__pickedCards = []
+        self.pickedFlag = False
+        self.pickedCards = []
         self.BACKCARD = wx.Bitmap("img/back.png")
 
         self.matrixBoard = BoardController(rows, cols)
@@ -44,10 +45,14 @@ class GamePanel(wx.Panel):
     def _onClick(self, event):
         cardPos = (int(event.GetRow()), int(event.GetCol()))
 
-        if not self.matrixBoard[cardPos] or cardPos in self.__pickedCards:
+        if (
+            not self.matrixBoard[cardPos]
+            or cardPos in self.pickedCards
+            or self.pickedFlag
+        ):
             return
 
-        self.__pickedCards.append(cardPos)
+        self.pickedCards.append(cardPos)
 
         imgPath = self.matrixBoard[cardPos].getPath()
         imgs = wx.Bitmap(imgPath, wx.BITMAP_TYPE_ANY)
@@ -55,9 +60,8 @@ class GamePanel(wx.Panel):
         imagerenderers = MyImageRenderer(imgs)
         self.gridBoard.SetCellRenderer(int(cardPos[0]), int(cardPos[1]), imagerenderers)
 
-        if len(self.__pickedCards) == 2:
-            print(self.__pickedCards)
-            aux = self.__pickedCards
+        if len(self.pickedCards) == 2:
+            aux = self.pickedCards
             card = self.matrixBoard[aux[0]].getId()
             nextCard = self.matrixBoard[aux[1]].getId()
 
@@ -65,13 +69,13 @@ class GamePanel(wx.Panel):
                 self.matrixBoard[aux[0]] = None
                 self.matrixBoard[aux[1]] = None
             else:
+                self.pickedFlag = True
                 wx.CallLater(250, self.turnBack)
-            self.__pickedCards = []
+            self.pickedCards = []
 
         self.gridBoard.ClearGrid()
 
     def turnBack(self):
-
         for i in range(self.matrixBoard.boardSize()[0]):
             for j in range(self.matrixBoard.boardSize()[1]):
                 if self.matrixBoard[(i, j)]:
@@ -81,6 +85,7 @@ class GamePanel(wx.Panel):
                     self.gridBoard.SetCellRenderer(i, j, self.imagerender)
                     self.gridBoard.SetColSize(j, self.img.GetWidth() + 5)
                     self.gridBoard.SetRowSize(i, self.img.GetHeight() + 5)
+        self.pickedFlag = False
         self.gridBoard.ClearGrid()
 
     def scaleBitmap(self, bitmap, width, height):
