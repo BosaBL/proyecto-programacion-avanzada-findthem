@@ -166,13 +166,14 @@ class GamePanel(wx.Panel):
 
         dialog = wx.MessageDialog(
             self,
-            "¿Estás seguro de que deseas salir?",
-            caption="SALIR",
+            "¿Estás seguro de que deseas volver al menú?",
+            caption="VOLVER A MENÚ",
             style=wx.YES_NO,
         )
 
         if dialog.ShowModal() == wx.ID_YES:
-            self.parent.Destroy()
+            self.Destroy()
+            self.parent.showMenu()
         dialog.Destroy()
 
 
