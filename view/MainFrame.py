@@ -16,7 +16,9 @@ class MainFrame(wx.Frame):
             title="FindThem",
             style=wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER,
         )
+        self.showMenu()
 
+    def showMenu(self):
         self.menuPanel = MenuPanel(self)
         self.menuPanel.Show()
 
@@ -26,10 +28,9 @@ class MainFrame(wx.Frame):
         self.SetSizerAndFit(self.sizer)
 
         self.Show()
+        self.Centre()
 
     def startGame(self):
-        self.menuPanel.Destroy()
-
         self.gamePanel = GamePanel(self, 3, 6)
         self.gamePanel.Show()
         self.sizer.Add(self.gamePanel)
