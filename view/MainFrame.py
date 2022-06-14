@@ -31,7 +31,7 @@ class MainFrame(wx.Frame):
         self.Centre()
 
     def startGame(self):
-        self.gamePanel = GamePanel(self, 3, 6)
+        self.gamePanel = GamePanel(self, 1, 2)
         self.gamePanel.Show()
         self.sizer.Add(self.gamePanel)
         self.SetSizerAndFit(self.sizer)
