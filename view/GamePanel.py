@@ -155,26 +155,37 @@ class GamePanel(wx.Panel):
         self.pointLabelCounter.SetLabel(f"{self.points}")
         dialog = wx.MessageDialog(
             self,
-            "JUEGO TERMINADO",
+            "JUEGO TERMINADO\n ¿DESEAS GUARDAR TU PUNTAJE?",
             caption="JUEGO TERMINADO",
-            style=wx.OK,
-        )
-        dialog.ShowModal()
-        dialog.Destroy()
-
-    def _onLeaveClick(self, e):
-
-        dialog = wx.MessageDialog(
-            self,
-            "¿Estás seguro de que deseas volver al menú?",
-            caption="VOLVER A MENÚ",
             style=wx.YES_NO,
         )
 
         if dialog.ShowModal() == wx.ID_YES:
+            entryDialog = wx.TextEntryDialog(self, "Ingresa tu nombre", "NOMBRE")
+
+            if entryDialog.ShowModal() == wx.ID_OK:
+                name = entryDialog.GetValue()
+                print(name)
+            entryDialog.Destroy()
+
+        dialog.Destroy()
+        wx.CallAfter(self._onLeaveClick)
+
+    def _onLeaveClick(self, e=None):
+        if e:
+            dialog = wx.MessageDialog(
+                self,
+                "¿Estás seguro de que deseas volver al menú?",
+                caption="VOLVER A MENÚ",
+                style=wx.YES_NO,
+            )
+            if dialog.ShowModal() == wx.ID_YES:
+                self.Destroy()
+                self.parent.showMenu()
+            dialog.Destroy()
+        else:
             self.Destroy()
             self.parent.showMenu()
-        dialog.Destroy()
 
 
 class MyImageRenderer(wx.grid.GridCellRenderer):
