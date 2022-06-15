@@ -6,11 +6,13 @@ Created on 08-06-2022
 import csv
 
 class mod:
-    myData=[["Player_name", "Player_score"],
-          ["sarta", "123",]]
-    
-    myFile=open("Player.csv", "w")
-    with myFile:
-        writer=csv.writer(myFile)
-        writer.writerows(myData)
-    print("ola")
+        with open("Player.csv", "w") as csvfile:
+            fieldnames=["Name", "Score"]
+            writer=csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader() 
+            writer.writerow({"Name": "a", "Score": "1"})
+                             
+            with open("Player.csv") as File:
+                reader=csv.DictReader(File)
+                for row in reader:
+                    fieldnames.append(row)
