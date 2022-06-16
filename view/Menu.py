@@ -17,16 +17,28 @@ class DifficultyPanel(wx.Panel):
         self.buttonMedium = wx.Button(
             self, -1, "MEDIUM", pos=(190, 210), size=(100, 30)
         )
+        self.buttonMedium.Bind(wx.EVT_BUTTON, self.mediumMode)
         self.buttonHard = wx.Button(self, -1, "HARD", pos=(190, 280), size=(100, 30))
+        self.buttonHard.Bind(wx.EVT_BUTTON, self.hardMode)
         self.SetBackgroundColour(wx.Colour(1000, 1000, 1000))
         self.Show(True)
         self.Centre()
 
     def easyMode(self, evt):
         self.Destroy()
-        self.parent.startGame()
+        self.parent.startEasyGame()
+    
+    def mediumMode(self, evt):
+        self.Destroy()
+        self.parent.startMediumGame()
+        
+    def hardMode(self, evt):
+        self.Destroy()
+        self.parent.startHardGame()
 
-
+        
+    
+    
 # this class creates the window to view the scoreboard
 class ScoreBoard(wx.Frame):
     def __init__(self, title, parent=None):
