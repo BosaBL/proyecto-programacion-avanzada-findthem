@@ -1,8 +1,7 @@
-import posixpath
 import wx
-from wx.core import EVT_BUTTON, HORIZONTAL
 import wx.grid as gridLib
 
+from controller.PlayerController import PlayerController
 from controller.BoardController import BoardController
 
 
@@ -14,6 +13,9 @@ class GamePanel(wx.Panel):
         self.time = 60
         self.points = 0
         self.parent = parent
+
+        self.minutes = self.time // 60
+        self.seconds = self.time - self.minutes * 60
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.gameTimer = wx.Timer(self)
@@ -51,7 +53,9 @@ class GamePanel(wx.Panel):
         self.DataGridSizer = wx.GridBagSizer(15, 15)
 
         self.TimeLabel = wx.StaticText(self, label="TIEMPO RESTANTE")
-        self.TimeLabelCounter = wx.StaticText(self)
+        self.TimeLabelCounter = wx.StaticText(
+            self, label=f"{self.minutes:02}:{self.seconds:02}"
+        )
 
         self.DataGridSizer.Add(self.TimeLabel, flag=wx.ALIGN_CENTRE, pos=(0, 0))
         self.DataGridSizer.Add(
@@ -79,7 +83,6 @@ class GamePanel(wx.Panel):
         self.sizer.Add(self.DataGridSizer, 0, wx.EXPAND | wx.ALL, 30)
 
         self.SetSizerAndFit(self.sizer)
-        self.gameTimer.Start(1000)
 
     def _onClick(self, event):
         cardPos = (int(event.GetRow()), int(event.GetCol()))
@@ -90,6 +93,9 @@ class GamePanel(wx.Panel):
             or self.pickedFlag
         ):
             return
+
+        if not self.gameTimer.IsRunning():
+            self.gameTimer.Start(1000)
 
         self.pickedCards.append(cardPos)
 
@@ -141,11 +147,10 @@ class GamePanel(wx.Panel):
         return result
 
     def timeCounter(self, e):
-        minutes = self.time // 60
-        seconds = self.time - minutes * 60
-
         self.time -= 1
-        self.TimeLabelCounter.SetLabel(f"{minutes}:{seconds}")
+        self.minutes = self.time // 60
+        self.seconds = self.time - self.minutes * 60
+        self.TimeLabelCounter.SetLabel(f"{self.minutes:02}:{self.seconds:02}")
 
         if self.time <= 0:
             self.endGame()
@@ -165,7 +170,9 @@ class GamePanel(wx.Panel):
 
             if entryDialog.ShowModal() == wx.ID_OK:
                 name = entryDialog.GetValue()
-                print(name)
+                player = PlayerController.createPlayer(name, self.points)
+                print(player.getName(), player.getPoints())
+
             entryDialog.Destroy()
 
         dialog.Destroy()
