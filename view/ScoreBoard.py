@@ -8,7 +8,7 @@ import wx.grid as wxgrid
 
 class ScoreBoard(wx.Frame):
     def __init__(self,parent,title):
-        wx.Frame.__init__(self,parent=parent,title=title,size=(800,800))
+        wx.Frame.__init__(self,parent=parent,title=title,size=(315,700))
 
         row = 100
         column = 2
