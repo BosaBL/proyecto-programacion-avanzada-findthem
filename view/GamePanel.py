@@ -8,7 +8,7 @@ from controller.BoardController import BoardController
 class GamePanel(wx.Panel):
     def __init__(self, parent, rows: int, cols: int):
         wx.Panel.__init__(self, parent=parent)
-
+        self.SetBackgroundColour("turquoise")
         self.foundPair = 0
         self.time = 60
         self.points = 0
@@ -75,10 +75,18 @@ class GamePanel(wx.Panel):
         self.DataGridSizer.Add(
             self.exitButton, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(0, 2)
         )
-
+        
+        self.resetButton = wx.Button(self, label="VOLVER A JUGAR")
+        self.resetButton.Bind(wx.EVT_BUTTON, self._onAgainPlayClick)
+        self.DataGridSizer.Add(
+            self.resetButton, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(1, 2)
+        )
+        
+        
         self.DataGridSizer.AddGrowableCol(1)
         self.DataGridSizer.AddGrowableCol(2)
         self.DataGridSizer.AddGrowableCol(0)
+        
 
         self.sizer.Add(self.DataGridSizer, 0, wx.EXPAND | wx.ALL, 30)
 
@@ -193,7 +201,24 @@ class GamePanel(wx.Panel):
         else:
             self.Destroy()
             self.parent.showMenu()
-
+       
+    def _onAgainPlayClick(self,e=None):
+        if e:
+            dialog = wx.MessageDialog(
+                self,
+                "Deseas jugar de nuevo",
+                caption="VOLVER A JUGAR",
+                style=wx.YES_NO,
+            )
+            if dialog.ShowModal() == wx.ID_YES:
+                self.Destroy()
+                self.parent.showDifficulty()
+            dialog.Destroy()
+        else:
+            self.Destroy()
+            self.parent.showDifficulty()
+    
+    
 
 class MyImageRenderer(wx.grid.GridCellRenderer):
     def __init__(self, img):
