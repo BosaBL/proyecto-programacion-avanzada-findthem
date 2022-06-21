@@ -135,7 +135,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">sizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">gridLib</span><span class="o">.</span><span class="n">EVT_GRID_CELL_LEFT_CLICK</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_onClick</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">gridLib</span><span class="o">.</span><span class="n">EVT_GRID_CELL_LEFT_CLICK</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">onClick</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">GridBagSizer</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
 
@@ -158,9 +158,9 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">exitButton</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;SALIR&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">exitButton</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_BUTTON</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_onLeaveClick</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exitButton</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_BUTTON</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">onLeaveClick</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resetButton</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;VOLVER A JUGAR&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">resetButton</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_BUTTON</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_onAgainPlayClick</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resetButton</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_BUTTON</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">onAgainPlayClick</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">triesLabel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;INTENTOS&quot;</span><span class="p">)</span>
@@ -327,7 +327,7 @@
             <span class="n">entryDialog</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
 
         <span class="n">dialog</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_onLeaveClick</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">onLeaveClick</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="GamePanel.onLeaveClick"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.onLeaveClick">[docs]</a>    <span class="k">def</span> <span class="nf">onLeaveClick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
