@@ -6,6 +6,7 @@ Created on 26-04-2022
 import wx
 from view.GamePanel import GamePanel
 from view.Menu import *
+from view.ScoreBoard import *
 
 
 class MainFrame(wx.Frame):

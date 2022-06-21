@@ -54,32 +54,6 @@ class DifficultyPanel(wx.Panel):
         config = ConfigExtractorController().getConfig("HARD")
         self.parent.startGame(config)
 
-
-# this class creates the window to view the scoreboard
-class ScoreBoard(wx.Panel):
-    def __init__(self, parent):
-        self.parent = parent
-        wx.Panel.__init__(self, parent, size=(500, 500))
-        self.SetBackgroundColour("turquoise")
-        self.title = wx.StaticText(self, -1, "TABLA DE PUNTAJE", pos=(130, 50))
-        self.count = 18
-        self.font = wx.Font(
-            self.count, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL
-        )
-        self.title.SetFont(self.font)
-
-        self.buttonBack = wx.Button(
-            self, label="VOLVER", pos=(190, 450), size=(100, 30)
-        )
-        self.buttonBack.Bind(wx.EVT_BUTTON, self.back)
-
-    def back(self, evt):
-        self.Destroy()
-        self.parent.showMenu()
-
-        # provisory
-
-
 # main window creation class to function as menu
 class MenuPanel(wx.Panel):
     def __init__(self, parent):
