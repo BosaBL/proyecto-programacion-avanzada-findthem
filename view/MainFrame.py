@@ -16,7 +16,10 @@ class MainFrame(wx.Frame):
             title="FindThem",
             style=wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER,
         )
-        icon=wx.Icon("C:\ALVARO\Programacion\proyecto-programacion-avanzada-findthem\lupa.png", wx.BITMAP_TYPE_ANY)
+        icon = wx.Icon(
+            "lupa.png",
+            wx.BITMAP_TYPE_ANY,
+        )
         self.SetIcon(icon)
 
         self.showMenu()
@@ -32,34 +35,34 @@ class MainFrame(wx.Frame):
 
         self.Show()
         self.Centre()
-    
+
     def showDifficulty(self):
-        self.difficultyPanel= DifficultyPanel(self)
+        self.difficultyPanel = DifficultyPanel(self)
         self.difficultyPanel.Show()
-        
-        self.sizer=wx.BoxSizer(wx.HORIZONTAL)
+
+        self.sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.sizer.Add(self.difficultyPanel)
         self.SetSizerAndFit(self.sizer)
-        
+
         self.Show()
         self.Centre()
-    
-    def startEasyGame(self):
-        self.gamePanel = GamePanel(self, 3, 6)
+
+    def startGame(self, config: dict):
+        self.gamePanel = GamePanel(self, config)
         self.gamePanel.Show()
         self.sizer.Add(self.gamePanel)
         self.SetSizerAndFit(self.sizer)
 
         self.Centre()
         self.Show()
-    
+
     def openScoreboard(self):
-        self.scoreboar=ScoreBoard(self)
+        self.scoreboar = ScoreBoard(self)
         self.scoreboar.Show()
-        
-        self.sizer=wx.BoxSizer(wx.HORIZONTAL)
+
+        self.sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.sizer.Add(self.scoreboar)
         self.SetSizerAndFit(self.sizer)
-        
+
         self.Show()
         self.Centre

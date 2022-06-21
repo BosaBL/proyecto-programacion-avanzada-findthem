@@ -3,4 +3,7 @@ from model.ConfigExtractor import ConfigExtractor
 
 class ConfigExtractorController:
     def __init__(self):
-        return ConfigExtractor()
+        self.__configExtractor = ConfigExtractor()
+
+    def getConfig(self, difficulty):
+        return self.__configExtractor.getConfig(difficulty)
