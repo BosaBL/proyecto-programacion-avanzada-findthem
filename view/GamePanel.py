@@ -3,14 +3,19 @@ import wx.grid as gridLib
 
 from controller.PlayerController import PlayerController
 from controller.BoardController import BoardController
+from controller.DatabaseController import DatabaseController
 
 
 class GamePanel(wx.Panel):
-    def __init__(self, parent, rows: int, cols: int):
+    def __init__(self, parent, config: dict):
         wx.Panel.__init__(self, parent=parent)
         self.SetBackgroundColour("turquoise")
+
+        self.config = config
+
+        self.tries = int(self.config["tries"])
         self.foundPair = 0
-        self.time = 60
+        self.time = int(self.config["time"])
         self.points = 0
         self.parent = parent
 
@@ -25,7 +30,9 @@ class GamePanel(wx.Panel):
         self.pickedCards = []
         self.BACKCARD = wx.Bitmap("img/back.png")
 
-        self.matrixBoard = BoardController(rows, cols)
+        self.matrixBoard = BoardController(
+            int(self.config["rows"]), int(self.config["cols"])
+        )
         self.matrixBoard.populateGameBoard()
 
         self.gridBoard = gridLib.Grid(self)
@@ -72,21 +79,37 @@ class GamePanel(wx.Panel):
 
         self.exitButton = wx.Button(self, label="SALIR")
         self.exitButton.Bind(wx.EVT_BUTTON, self._onLeaveClick)
-        self.DataGridSizer.Add(
-            self.exitButton, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(0, 2)
-        )
-        
         self.resetButton = wx.Button(self, label="VOLVER A JUGAR")
         self.resetButton.Bind(wx.EVT_BUTTON, self._onAgainPlayClick)
-        self.DataGridSizer.Add(
-            self.resetButton, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(1, 2)
-        )
-        
-        
+
+        if int(self.config["identifier"]) != 0:
+            self.triesLabel = wx.StaticText(self, label="INTENTOS")
+            self.triesCounter = wx.StaticText(self, label=f"{self.tries}")
+            self.DataGridSizer.Add(
+                self.triesLabel, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(0, 2)
+            )
+            self.DataGridSizer.Add(
+                self.triesCounter, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(1, 2)
+            )
+
+            self.DataGridSizer.Add(
+                self.exitButton, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(0, 3)
+            )
+            self.DataGridSizer.Add(
+                self.resetButton, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(1, 3)
+            )
+
+        else:
+            self.DataGridSizer.Add(
+                self.exitButton, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(0, 2)
+            )
+            self.DataGridSizer.Add(
+                self.resetButton, flag=wx.ALIGN_CENTER_HORIZONTAL, pos=(1, 2)
+            )
+
         self.DataGridSizer.AddGrowableCol(1)
         self.DataGridSizer.AddGrowableCol(2)
         self.DataGridSizer.AddGrowableCol(0)
-        
 
         self.sizer.Add(self.DataGridSizer, 0, wx.EXPAND | wx.ALL, 30)
 
@@ -114,6 +137,8 @@ class GamePanel(wx.Panel):
         self.gridBoard.SetCellRenderer(int(cardPos[0]), int(cardPos[1]), imagerenderers)
 
         if len(self.pickedCards) == 2:
+            wx.CallAfter(self.triesUpdater)
+
             aux = self.pickedCards
             card = self.matrixBoard[aux[0]].getId()
             nextCard = self.matrixBoard[aux[1]].getId()
@@ -132,7 +157,6 @@ class GamePanel(wx.Panel):
                 self.pickedFlag = True
                 wx.CallLater(250, self.turnBack)
             self.pickedCards = []
-
         self.gridBoard.ClearGrid()
 
     def turnBack(self):
@@ -154,6 +178,13 @@ class GamePanel(wx.Panel):
         result = wx.Bitmap(image)
         return result
 
+    def triesUpdater(self):
+        if int(self.config["identifier"]) != 0:
+            self.tries -= 1
+            self.triesCounter.SetLabel(f"{self.tries}")
+            if self.tries == 0:
+                self.endGame()
+
     def timeCounter(self, e):
         self.time -= 1
         self.minutes = self.time // 60
@@ -164,7 +195,6 @@ class GamePanel(wx.Panel):
             self.endGame()
 
     def endGame(self):
-        self.points += self.time * 2
         self.pointLabelCounter.SetLabel(f"{self.points}")
         dialog = wx.MessageDialog(
             self,
@@ -177,32 +207,34 @@ class GamePanel(wx.Panel):
             entryDialog = wx.TextEntryDialog(self, "Ingresa tu nombre", "NOMBRE")
 
             if entryDialog.ShowModal() == wx.ID_OK:
+                db = DatabaseController().databaseConnection()
                 name = entryDialog.GetValue()
-                player = PlayerController.createPlayer(name, self.points)
-                print(player.getName(), player.getPoints())
-
+                player = PlayerController.createPlayer(
+                    name, self.calculateTotalPoints()
+                )
+                db.addPlayerToScoreBoard(player)
             entryDialog.Destroy()
 
         dialog.Destroy()
-        wx.CallAfter(self._onLeaveClick)
+        self._onLeaveClick()
 
     def _onLeaveClick(self, e=None):
         if e:
             dialog = wx.MessageDialog(
                 self,
-                "¿Estás seguro de que deseas volver al menú?",
-                caption="VOLVER A MENÚ",
+                "¿Estás seguro de que deseas salir?",
+                caption="SALIR",
                 style=wx.YES_NO,
             )
             if dialog.ShowModal() == wx.ID_YES:
                 self.Destroy()
-                self.parent.showMenu()
+                self.parent.Destroy()
             dialog.Destroy()
         else:
-            self.Destroy()
+            self.Hide()
             self.parent.showMenu()
-       
-    def _onAgainPlayClick(self,e=None):
+
+    def _onAgainPlayClick(self, e=None):
         if e:
             dialog = wx.MessageDialog(
                 self,
@@ -211,14 +243,21 @@ class GamePanel(wx.Panel):
                 style=wx.YES_NO,
             )
             if dialog.ShowModal() == wx.ID_YES:
-                self.Destroy()
                 self.parent.showDifficulty()
-            dialog.Destroy()
-        else:
-            self.Destroy()
-            self.parent.showDifficulty()
-    
-    
+                self.Hide()
+
+    def calculateTotalPoints(self):
+        total = 0
+        total += self.points
+        total += self.time * 2
+
+        if int(self.config["identifier"] != 0):
+            total += self.tries
+
+        total *= int(self.config["pointmultiplier"])
+
+        return total
+
 
 class MyImageRenderer(wx.grid.GridCellRenderer):
     def __init__(self, img):
