@@ -17,7 +17,7 @@ class MainFrame(wx.Frame):
             style=wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER,
         )
         icon = wx.Icon(
-            "lupa.png",
+            "img/lupa.png",
             wx.BITMAP_TYPE_ANY,
         )
         self.SetIcon(icon)
