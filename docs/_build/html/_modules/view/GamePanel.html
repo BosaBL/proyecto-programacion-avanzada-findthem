@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>view.GamePanel &mdash; FIND THEM 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> FIND THEM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../view.html">view package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controller.html">controller package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../model.html">model package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">FIND THEM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>view.GamePanel</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for view.GamePanel</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Clase GamePanel</span>
+<span class="sd">##################################</span>
+<span class="sd">Encargada de mostrar la interfáz del tablero</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">wx</span>
+<span class="kn">import</span> <span class="nn">wx.grid</span> <span class="k">as</span> <span class="nn">gridLib</span>
+
+<span class="kn">from</span> <span class="nn">controller.PlayerController</span> <span class="kn">import</span> <span class="n">PlayerController</span>
+<span class="kn">from</span> <span class="nn">controller.BoardController</span> <span class="kn">import</span> <span class="n">BoardController</span>
+<span class="kn">from</span> <span class="nn">controller.DatabaseController</span> <span class="kn">import</span> <span class="n">DatabaseController</span>
+
+
+<div class="viewcode-block" id="GamePanel"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel">[docs]</a><span class="k">class</span> <span class="nc">GamePanel</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param parent: Clase padre</span>
+<span class="sd">    :type parent: wx.Panel</span>
+<span class="sd">    :param config: diccionario con las configuraciones del tablero.</span>
+<span class="sd">    :type config: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetBackgroundColour</span><span class="p">(</span><span class="s2">&quot;turquoise&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tries</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;tries&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">foundPair</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">//</span> <span class="mi">60</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seconds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sizer</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">BoxSizer</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gameTimer</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_TIMER</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeCounter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameTimer</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pickedFlag</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pickedCards</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BACKCARD</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="s2">&quot;img/back.png&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span> <span class="o">=</span> <span class="n">BoardController</span><span class="p">(</span>
+            <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;rows&quot;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;cols&quot;</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="o">.</span><span class="n">populateGameBoard</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span> <span class="o">=</span> <span class="n">gridLib</span><span class="o">.</span><span class="n">Grid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">CreateGrid</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="o">.</span><span class="n">boardSize</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="o">.</span><span class="n">boardSize</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">gridLib</span><span class="o">.</span><span class="n">Grid</span><span class="o">.</span><span class="n">GridSelectNone</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">SetDefaultCellBackgroundColour</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">GetLabelBackgroundColour</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">SetRowLabelSize</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">SetColLabelSize</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">EnableEditing</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">EnableDragColSize</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">EnableDragRowSize</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">SetCellHighlightPenWidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">turnBack</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">gridLib</span><span class="o">.</span><span class="n">EVT_GRID_CELL_LEFT_CLICK</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_onClick</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">GridBagSizer</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">TimeLabel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;TIEMPO RESTANTE&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TimeLabelCounter</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">minutes</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">seconds</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TimeLabel</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTRE</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">TimeLabelCounter</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTER_HORIZONTAL</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pointLabel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;PUNTOS&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pointLabelCounter</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pointLabel</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTRE</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pointLabelCounter</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTER_HORIZONTAL</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">exitButton</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;SALIR&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exitButton</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_BUTTON</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_onLeaveClick</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resetButton</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;VOLVER A JUGAR&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resetButton</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_BUTTON</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_onAgainPlayClick</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">triesLabel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;INTENTOS&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">triesCounter</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tries</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">triesLabel</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTER_HORIZONTAL</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">triesCounter</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTER_HORIZONTAL</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">exitButton</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTER_HORIZONTAL</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">resetButton</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTER_HORIZONTAL</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">exitButton</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTER_HORIZONTAL</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">resetButton</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">ALIGN_CENTER_HORIZONTAL</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">AddGrowableCol</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">AddGrowableCol</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="o">.</span><span class="n">AddGrowableCol</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sizer</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DataGridSizer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ALL</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetSizerAndFit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sizer</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GamePanel.onClick"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.onClick">[docs]</a>    <span class="k">def</span> <span class="nf">onClick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Encargada de recibir el evento de click en una carta y aplicar toda la lógica.</span>
+
+<span class="sd">        :param event: evento</span>
+<span class="sd">        :type parent: wx.EVT</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cardPos</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">GetRow</span><span class="p">()),</span> <span class="nb">int</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">GetCol</span><span class="p">()))</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="p">[</span><span class="n">cardPos</span><span class="p">]</span>
+            <span class="ow">or</span> <span class="n">cardPos</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pickedCards</span>
+            <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">pickedFlag</span>
+        <span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameTimer</span><span class="o">.</span><span class="n">IsRunning</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gameTimer</span><span class="o">.</span><span class="n">Start</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pickedCards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cardPos</span><span class="p">)</span>
+
+        <span class="n">imgPath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="p">[</span><span class="n">cardPos</span><span class="p">]</span><span class="o">.</span><span class="n">getPath</span><span class="p">()</span>
+        <span class="n">imgs</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="n">imgPath</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">BITMAP_TYPE_ANY</span><span class="p">)</span>
+        <span class="n">imgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scaleBitmap</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">125</span><span class="p">)</span>
+        <span class="n">imagerenderers</span> <span class="o">=</span> <span class="n">MyImageRenderer</span><span class="p">(</span><span class="n">imgs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">SetCellRenderer</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">cardPos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">cardPos</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">imagerenderers</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pickedCards</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">wx</span><span class="o">.</span><span class="n">CallAfter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">triesUpdater</span><span class="p">)</span>
+
+            <span class="n">aux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pickedCards</span>
+            <span class="n">card</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="p">[</span><span class="n">aux</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">getId</span><span class="p">()</span>
+            <span class="n">nextCard</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="p">[</span><span class="n">aux</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">getId</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">card</span> <span class="o">==</span> <span class="n">nextCard</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">+=</span> <span class="mi">2</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">foundPair</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="o">.</span><span class="n">boardSize</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="o">.</span><span class="n">boardSize</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">foundPair</span> <span class="o">==</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">gameTimer</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
+                    <span class="n">wx</span><span class="o">.</span><span class="n">CallLater</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">endGame</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pointLabelCounter</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="p">[</span><span class="n">aux</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="p">[</span><span class="n">aux</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pickedFlag</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">wx</span><span class="o">.</span><span class="n">CallLater</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">turnBack</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pickedCards</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">ClearGrid</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GamePanel.turnBack"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.turnBack">[docs]</a>    <span class="k">def</span> <span class="nf">turnBack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Muestra la parte trasera de las cartas.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="o">.</span><span class="n">boardSize</span><span class="p">()[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="o">.</span><span class="n">boardSize</span><span class="p">()[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrixBoard</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scaleBitmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BACKCARD</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">125</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">imagerender</span> <span class="o">=</span> <span class="n">MyImageRenderer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">)</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">SetCellRenderer</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imagerender</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">SetColSize</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="o">.</span><span class="n">GetWidth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">SetRowSize</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="o">.</span><span class="n">GetHeight</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pickedFlag</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gridBoard</span><span class="o">.</span><span class="n">ClearGrid</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GamePanel.scaleBitmap"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.scaleBitmap">[docs]</a>    <span class="k">def</span> <span class="nf">scaleBitmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bitmap</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reescala una imágen</span>
+
+<span class="sd">        :param bitmap: Recibe un bitmap (png,jpg, etc)</span>
+<span class="sd">        :type parent: Bitmap</span>
+<span class="sd">        :param width: Ancho de la imagen.</span>
+<span class="sd">        :type width: float</span>
+<span class="sd">        :param height: Alto de la imagen.</span>
+<span class="sd">        :type height: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="o">.</span><span class="n">ConvertToImage</span><span class="p">(</span><span class="n">bitmap</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">IMAGE_QUALITY_HIGH</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="GamePanel.triesUpdater"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.triesUpdater">[docs]</a>    <span class="k">def</span> <span class="nf">triesUpdater</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actualiza el contador de intentos.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tries</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">triesCounter</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tries</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tries</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">endGame</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GamePanel.timeCounter"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.timeCounter">[docs]</a>    <span class="k">def</span> <span class="nf">timeCounter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actuliza el contador de tiempo cada vez que es llamada por un evento.</span>
+
+<span class="sd">        :param e: evento generado por wx.Time</span>
+<span class="sd">        :type e: wx.EVT_Timer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">//</span> <span class="mi">60</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seconds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TimeLabelCounter</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">minutes</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">seconds</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">endGame</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GamePanel.endGame"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.endGame">[docs]</a>    <span class="k">def</span> <span class="nf">endGame</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Termina el juego, aplicando la lógica de guardar jugador.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pointLabelCounter</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MessageDialog</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="s2">&quot;JUEGO TERMINADO</span><span class="se">\n</span><span class="s2"> ¿DESEAS GUARDAR TU PUNTAJE?&quot;</span><span class="p">,</span>
+            <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;JUEGO TERMINADO&quot;</span><span class="p">,</span>
+            <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">YES_NO</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span> <span class="o">==</span> <span class="n">wx</span><span class="o">.</span><span class="n">ID_YES</span><span class="p">:</span>
+            <span class="n">entryDialog</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">TextEntryDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Ingresa tu nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;NOMBRE&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">entryDialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span> <span class="o">==</span> <span class="n">wx</span><span class="o">.</span><span class="n">ID_OK</span><span class="p">:</span>
+                <span class="n">db</span> <span class="o">=</span> <span class="n">DatabaseController</span><span class="p">()</span><span class="o">.</span><span class="n">databaseConnection</span><span class="p">()</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">entryDialog</span><span class="o">.</span><span class="n">GetValue</span><span class="p">()</span>
+                <span class="n">player</span> <span class="o">=</span> <span class="n">PlayerController</span><span class="o">.</span><span class="n">createPlayer</span><span class="p">(</span>
+                    <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculateTotalPoints</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">addPlayerToScoreBoard</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+            <span class="n">entryDialog</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+
+        <span class="n">dialog</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_onLeaveClick</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GamePanel.onLeaveClick"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.onLeaveClick">[docs]</a>    <span class="k">def</span> <span class="nf">onLeaveClick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cierra el juego, si es llamada por un evento solicita confirmación</span>
+
+<span class="sd">        :param e: evento</span>
+<span class="sd">        :type e: wx.EVT</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">dialog</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MessageDialog</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span>
+                <span class="s2">&quot;¿Estás seguro de que deseas salir?&quot;</span><span class="p">,</span>
+                <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;SALIR&quot;</span><span class="p">,</span>
+                <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">YES_NO</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span> <span class="o">==</span> <span class="n">wx</span><span class="o">.</span><span class="n">ID_YES</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+            <span class="n">dialog</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Hide</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">showMenu</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GamePanel.onAgainPlayClick"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.onAgainPlayClick">[docs]</a>    <span class="k">def</span> <span class="nf">onAgainPlayClick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve al menú</span>
+
+<span class="sd">        :param e: evento</span>
+<span class="sd">        :type e: wx.EVT</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">dialog</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MessageDialog</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span>
+                <span class="s2">&quot;Deseas jugar de nuevo&quot;</span><span class="p">,</span>
+                <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;VOLVER A JUGAR&quot;</span><span class="p">,</span>
+                <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">YES_NO</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span> <span class="o">==</span> <span class="n">wx</span><span class="o">.</span><span class="n">ID_YES</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">showDifficulty</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Hide</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GamePanel.calculateTotalPoints"><a class="viewcode-back" href="../../view.html#view.GamePanel.GamePanel.calculateTotalPoints">[docs]</a>    <span class="k">def</span> <span class="nf">calculateTotalPoints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcula el total de puntos según la dificultad elegida</span>
+
+<span class="sd">        :return total: total de puntos.</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">*</span> <span class="mi">2</span>
+
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tries</span>
+
+        <span class="n">total</span> <span class="o">*=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;pointmultiplier&quot;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">total</span></div></div>
+
+
+<div class="viewcode-block" id="MyImageRenderer"><a class="viewcode-back" href="../../view.html#view.GamePanel.MyImageRenderer">[docs]</a><span class="k">class</span> <span class="nc">MyImageRenderer</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">GridCellRenderer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">GridCellRenderer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img</span> <span class="o">=</span> <span class="n">img</span>
+
+<div class="viewcode-block" id="MyImageRenderer.Draw"><a class="viewcode-back" href="../../view.html#view.GamePanel.MyImageRenderer.Draw">[docs]</a>    <span class="k">def</span> <span class="nf">Draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">dc</span><span class="p">,</span> <span class="n">rect</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">isSelected</span><span class="p">):</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MemoryDC</span><span class="p">()</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">SelectObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">)</span>
+        <span class="n">dc</span><span class="o">.</span><span class="n">SetBackgroundMode</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">SOLID</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">isSelected</span><span class="p">:</span>
+            <span class="n">dc</span><span class="o">.</span><span class="n">SetBrush</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Brush</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">SOLID</span><span class="p">))</span>
+            <span class="n">dc</span><span class="o">.</span><span class="n">SetPen</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Pen</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">BLUE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">SOLID</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dc</span><span class="o">.</span><span class="n">SetBrush</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Brush</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">SOLID</span><span class="p">))</span>
+            <span class="n">dc</span><span class="o">.</span><span class="n">SetPen</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Pen</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">SOLID</span><span class="p">))</span>
+        <span class="n">dc</span><span class="o">.</span><span class="n">DrawRectangle</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="o">.</span><span class="n">GetWidth</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="o">.</span><span class="n">GetHeight</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">width</span> <span class="o">&gt;</span> <span class="n">rect</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">height</span> <span class="o">&gt;</span> <span class="n">rect</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="mi">2</span>
+        <span class="n">dc</span><span class="o">.</span><span class="n">Blit</span><span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rect</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">COPY</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, GRUPOIII.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

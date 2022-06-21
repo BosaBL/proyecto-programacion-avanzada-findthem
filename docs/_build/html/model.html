@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>model package &mdash; FIND THEM 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="controller package" href="controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> FIND THEM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="view.html">view package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">model package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model.Board">model.Board module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-board">Clase Board</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model.Card">model.Card module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-card">Clase Card</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model.CardFinder">model.CardFinder module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-cardfinder">Clase CardFinder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model.ConfigExtractor">model.ConfigExtractor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-configextractor">Clase ConfigExtractor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model.Database">model.Database module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-database">Clase Database</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model.Player">model.Player module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-player">Clase Player</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-model">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FIND THEM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>model package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="model-package">
+<h1>model package<a class="headerlink" href="#model-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-model.Board">
+<span id="model-board-module"></span><h2>model.Board module<a class="headerlink" href="#module-model.Board" title="Permalink to this heading"></a></h2>
+<section id="clase-board">
+<h3>Clase Board<a class="headerlink" href="#clase-board" title="Permalink to this heading"></a></h3>
+<p>Modelo de un tablero de juego.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.Board.Board">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.Board.</span></span><span class="sig-name descname"><span class="pre">Board</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Board.html#Board"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Board.Board" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> (<em>int</em>) – cantidad de filas</p></li>
+<li><p><strong>cols</strong> (<em>int</em>) – cantidad de columnas</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Board.Board.appendItem">
+<span class="sig-name descname"><span class="pre">appendItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Board.html#Board.appendItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Board.Board.appendItem" title="Permalink to this definition"></a></dt>
+<dd><p>Añade un elemento al final del vector base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item</strong> (<a class="reference internal" href="#model.Card.Card" title="model.Card.Card"><em>Card</em></a>) – elemento a añadir.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Board.Board.clearBoardVector">
+<span class="sig-name descname"><span class="pre">clearBoardVector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Board.html#Board.clearBoardVector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Board.Board.clearBoardVector" title="Permalink to this definition"></a></dt>
+<dd><p>Vacia el vector base.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Board.Board.getBoardMatrix">
+<span class="sig-name descname"><span class="pre">getBoardMatrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Board.html#Board.getBoardMatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Board.Board.getBoardMatrix" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>versión matricial del vector.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Board.Board.getSize">
+<span class="sig-name descname"><span class="pre">getSize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Board.html#Board.getSize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Board.Board.getSize" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tupla con el tamaño de la matríz.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Board.Board.setItem">
+<span class="sig-name descname"><span class="pre">setItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Board.html#Board.setItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Board.Board.setItem" title="Permalink to this definition"></a></dt>
+<dd><p>Modifica un elemento del del vector base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<em>int</em>) – índice del elemento.</p></li>
+<li><p><strong>item</strong> (<a class="reference internal" href="#model.Card.Card" title="model.Card.Card"><em>Card</em></a>) – elemento a añadir.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Board.Board.shuffleVector">
+<span class="sig-name descname"><span class="pre">shuffleVector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Board.html#Board.shuffleVector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Board.Board.shuffleVector" title="Permalink to this definition"></a></dt>
+<dd><p>Desordena el vector base.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-model.Card">
+<span id="model-card-module"></span><h2>model.Card module<a class="headerlink" href="#module-model.Card" title="Permalink to this heading"></a></h2>
+<section id="clase-card">
+<h3>Clase Card<a class="headerlink" href="#clase-card" title="Permalink to this heading"></a></h3>
+<p>Modelo de una Carta del juego</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.Card.Card">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.Card.</span></span><span class="sig-name descname"><span class="pre">Card</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Card.html#Card"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Card.Card" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>identifier</strong> (<em>int</em>) – identificador o ID de la carta.</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – OS PATH de la imagen de la carta.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Card.Card.getId">
+<span class="sig-name descname"><span class="pre">getId</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Card.html#Card.getId"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Card.Card.getId" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Identificador de la carta.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Card.Card.getPath">
+<span class="sig-name descname"><span class="pre">getPath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Card.html#Card.getPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Card.Card.getPath" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>path de la carta.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-model.CardFinder">
+<span id="model-cardfinder-module"></span><h2>model.CardFinder module<a class="headerlink" href="#module-model.CardFinder" title="Permalink to this heading"></a></h2>
+<section id="clase-cardfinder">
+<h3>Clase CardFinder<a class="headerlink" href="#clase-cardfinder" title="Permalink to this heading"></a></h3>
+<p>Encuentra el PATH de cada carta y le asigna un ID.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.CardFinder.CardFinder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.CardFinder.</span></span><span class="sig-name descname"><span class="pre">CardFinder</span></span><a class="reference internal" href="_modules/model/CardFinder.html#CardFinder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.CardFinder.CardFinder" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.CardFinder.CardFinder.getCardFolder">
+<span class="sig-name descname"><span class="pre">getCardFolder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/CardFinder.html#CardFinder.getCardFolder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.CardFinder.CardFinder.getCardFolder" title="Permalink to this definition"></a></dt>
+<dd><p>Busca el directorio que contiene a las imágenes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>PATH del directorio.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.CardFinder.CardFinder.getCardPathIds">
+<span class="sig-name descname"><span class="pre">getCardPathIds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/CardFinder.html#CardFinder.getCardPathIds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.CardFinder.CardFinder.getCardPathIds" title="Permalink to this definition"></a></dt>
+<dd><p>Retorna un diccionario que contiene PATH y ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Diccionario con cartas.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-model.ConfigExtractor">
+<span id="model-configextractor-module"></span><h2>model.ConfigExtractor module<a class="headerlink" href="#module-model.ConfigExtractor" title="Permalink to this heading"></a></h2>
+<section id="clase-configextractor">
+<h3>Clase ConfigExtractor<a class="headerlink" href="#clase-configextractor" title="Permalink to this heading"></a></h3>
+<p>Extrae la configuración desde un archivo.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.ConfigExtractor.ConfigExtractor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.ConfigExtractor.</span></span><span class="sig-name descname"><span class="pre">ConfigExtractor</span></span><a class="reference internal" href="_modules/model/ConfigExtractor.html#ConfigExtractor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.ConfigExtractor.ConfigExtractor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.ConfigExtractor.ConfigExtractor.getConfig">
+<span class="sig-name descname"><span class="pre">getConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">difficulty</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/ConfigExtractor.html#ConfigExtractor.getConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.ConfigExtractor.ConfigExtractor.getConfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-model.Database">
+<span id="model-database-module"></span><h2>model.Database module<a class="headerlink" href="#module-model.Database" title="Permalink to this heading"></a></h2>
+<section id="clase-database">
+<h3>Clase Database<a class="headerlink" href="#clase-database" title="Permalink to this heading"></a></h3>
+<p>Permite realizar operaciones en una “base de datos” que en realidad es un archivo CSV.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.Database.Database">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.Database.</span></span><span class="sig-name descname"><span class="pre">Database</span></span><a class="reference internal" href="_modules/model/Database.html#Database"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Database.Database" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Database.Database.addPlayerToScoreBoard">
+<span class="sig-name descname"><span class="pre">addPlayerToScoreBoard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Database.html#Database.addPlayerToScoreBoard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Database.Database.addPlayerToScoreBoard" title="Permalink to this definition"></a></dt>
+<dd><p>Añade el objeto jugador a la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>player</strong> (<a class="reference internal" href="#model.Player.Player" title="model.Player.Player"><em>Player</em></a>) – jugador que se desea añadir.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Database.Database.readScoreBoard">
+<span class="sig-name descname"><span class="pre">readScoreBoard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Database.html#Database.readScoreBoard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Database.Database.readScoreBoard" title="Permalink to this definition"></a></dt>
+<dd><p>Lee la base de datos</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>jugadores en la base de datos:</p>
+</dd>
+<dt class="field-even">Rtyoe</dt>
+<dd class="field-even"><p>list[Player]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-model.Player">
+<span id="model-player-module"></span><h2>model.Player module<a class="headerlink" href="#module-model.Player" title="Permalink to this heading"></a></h2>
+<section id="clase-player">
+<h3>Clase Player<a class="headerlink" href="#clase-player" title="Permalink to this heading"></a></h3>
+<p>Otorga un modelo de jugador.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="model.Player.Player">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model.Player.</span></span><span class="sig-name descname"><span class="pre">Player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Player.html#Player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Player.Player" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – nombre del jugador.</p></li>
+<li><p><strong>points</strong> (<em>int</em>) – puntos del jugador</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Player.Player.addPoints">
+<span class="sig-name descname"><span class="pre">addPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Player.html#Player.addPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Player.Player.addPoints" title="Permalink to this definition"></a></dt>
+<dd><p>Añade puntos a un jugador.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>points</strong> (<em>int</em>) – puntos a añadir.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Player.Player.getName">
+<span class="sig-name descname"><span class="pre">getName</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Player.html#Player.getName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Player.Player.getName" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>nombre del jugador.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Player.Player.getPoints">
+<span class="sig-name descname"><span class="pre">getPoints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Player.html#Player.getPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Player.Player.getPoints" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>puntaje del jugador.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model.Player.Player.resetPoints">
+<span class="sig-name descname"><span class="pre">resetPoints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model/Player.html#Player.resetPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model.Player.Player.resetPoints" title="Permalink to this definition"></a></dt>
+<dd><p>Reinicia los puntos del jugador a 0.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-model" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controller.html" class="btn btn-neutral float-left" title="controller package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, GRUPOIII.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

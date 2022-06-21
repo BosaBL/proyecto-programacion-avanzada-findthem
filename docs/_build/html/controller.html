@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>controller package &mdash; FIND THEM 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="model package" href="model.html" />
+    <link rel="prev" title="view package" href="view.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> FIND THEM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="view.html">view package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">controller package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-controller.BoardController">controller.BoardController module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-boardcontroller">Clase BoardController</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-controller.ConfigExtractorController">controller.ConfigExtractorController module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-configextractorcontroller">Clase ConfigExtractorController</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-controller.DatabaseController">controller.DatabaseController module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-databasecontroller">Clase DatabaseController</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-controller.PlayerController">controller.PlayerController module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clase-playercontroller">Clase PlayerController</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-controller">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FIND THEM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>controller package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/controller.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controller-package">
+<h1>controller package<a class="headerlink" href="#controller-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-controller.BoardController">
+<span id="controller-boardcontroller-module"></span><h2>controller.BoardController module<a class="headerlink" href="#module-controller.BoardController" title="Permalink to this heading"></a></h2>
+<section id="clase-boardcontroller">
+<h3>Clase BoardController<a class="headerlink" href="#clase-boardcontroller" title="Permalink to this heading"></a></h3>
+<p>Controlador de <a class="reference internal" href="model.html#module-model.Board" title="model.Board"><code class="xref py py-class docutils literal notranslate"><span class="pre">model.Board</span></code></a></p>
+<p>se puede interactuar con este objeto como si se tratase de un vector.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="controller.BoardController.BoardController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.BoardController.</span></span><span class="sig-name descname"><span class="pre">BoardController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/BoardController.html#BoardController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.BoardController.BoardController" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> (<em>int</em>) – filas del tablero.</p></li>
+<li><p><strong>cols</strong> (<em>int</em>) – columnas del tablero.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.BoardController.BoardController.boardSize">
+<span class="sig-name descname"><span class="pre">boardSize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/BoardController.html#BoardController.boardSize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.BoardController.BoardController.boardSize" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tamaño del tablero.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple(int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.BoardController.BoardController.generateCardList">
+<span class="sig-name descname"><span class="pre">generateCardList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/BoardController.html#BoardController.generateCardList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.BoardController.BoardController.generateCardList" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>lista de cartas.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="model.html#model.Card.Card" title="model.Card.Card">Card</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.BoardController.BoardController.populateGameBoard">
+<span class="sig-name descname"><span class="pre">populateGameBoard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/BoardController.html#BoardController.populateGameBoard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.BoardController.BoardController.populateGameBoard" title="Permalink to this definition"></a></dt>
+<dd><p>Llena el tablero de carta y las desordena.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-controller.ConfigExtractorController">
+<span id="controller-configextractorcontroller-module"></span><h2>controller.ConfigExtractorController module<a class="headerlink" href="#module-controller.ConfigExtractorController" title="Permalink to this heading"></a></h2>
+<section id="clase-configextractorcontroller">
+<h3>Clase ConfigExtractorController<a class="headerlink" href="#clase-configextractorcontroller" title="Permalink to this heading"></a></h3>
+<p>Controlador de <a class="reference internal" href="model.html#module-model.ConfigExtractor" title="model.ConfigExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">model.ConfigExtractor</span></code></a></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="controller.ConfigExtractorController.ConfigExtractorController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.ConfigExtractorController.</span></span><span class="sig-name descname"><span class="pre">ConfigExtractorController</span></span><a class="reference internal" href="_modules/controller/ConfigExtractorController.html#ConfigExtractorController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.ConfigExtractorController.ConfigExtractorController" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.ConfigExtractorController.ConfigExtractorController.getConfig">
+<span class="sig-name descname"><span class="pre">getConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">difficulty</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/ConfigExtractorController.html#ConfigExtractorController.getConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.ConfigExtractorController.ConfigExtractorController.getConfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-controller.DatabaseController">
+<span id="controller-databasecontroller-module"></span><h2>controller.DatabaseController module<a class="headerlink" href="#module-controller.DatabaseController" title="Permalink to this heading"></a></h2>
+<section id="clase-databasecontroller">
+<h3>Clase DatabaseController<a class="headerlink" href="#clase-databasecontroller" title="Permalink to this heading"></a></h3>
+<p>Controlador de <a class="reference internal" href="model.html#module-model.Database" title="model.Database"><code class="xref py py-class docutils literal notranslate"><span class="pre">model.Database</span></code></a></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="controller.DatabaseController.DatabaseController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.DatabaseController.</span></span><span class="sig-name descname"><span class="pre">DatabaseController</span></span><a class="reference internal" href="_modules/controller/DatabaseController.html#DatabaseController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.DatabaseController.DatabaseController" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.DatabaseController.DatabaseController.databaseConnection">
+<span class="sig-name descname"><span class="pre">databaseConnection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/DatabaseController.html#DatabaseController.databaseConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.DatabaseController.DatabaseController.databaseConnection" title="Permalink to this definition"></a></dt>
+<dd><p>Establece una conección con la base de datos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.DatabaseController.DatabaseController.descOrder">
+<span class="sig-name descname"><span class="pre">descOrder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/DatabaseController.html#DatabaseController.descOrder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.DatabaseController.DatabaseController.descOrder" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>lista ordenada en manera descendente de los jugadores.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[dict]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-controller.PlayerController">
+<span id="controller-playercontroller-module"></span><h2>controller.PlayerController module<a class="headerlink" href="#module-controller.PlayerController" title="Permalink to this heading"></a></h2>
+<section id="clase-playercontroller">
+<h3>Clase PlayerController<a class="headerlink" href="#clase-playercontroller" title="Permalink to this heading"></a></h3>
+<p>Controlador de la clase <a class="reference internal" href="model.html#module-model.Player" title="model.Player"><code class="xref py py-class docutils literal notranslate"><span class="pre">model.Player</span></code></a></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="controller.PlayerController.PlayerController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.PlayerController.</span></span><span class="sig-name descname"><span class="pre">PlayerController</span></span><a class="reference internal" href="_modules/controller/PlayerController.html#PlayerController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.PlayerController.PlayerController" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.PlayerController.PlayerController.createPlayer">
+<span class="sig-name descname"><span class="pre">createPlayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/PlayerController.html#PlayerController.createPlayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.PlayerController.PlayerController.createPlayer" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>jugador.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#model.Player.Player" title="model.Player.Player">Player</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-controller">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-controller" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="view.html" class="btn btn-neutral float-left" title="view package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="model.html" class="btn btn-neutral float-right" title="model package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, GRUPOIII.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
