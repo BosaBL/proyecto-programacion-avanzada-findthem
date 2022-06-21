@@ -1,3 +1,4 @@
+# -- coding: utf-8 --
 import wx
 import wx.grid as gridLib
 
@@ -238,7 +239,7 @@ class GamePanel(wx.Panel):
         if e:
             dialog = wx.MessageDialog(
                 self,
-                "Deseas jugar de nuevo",
+                "¿Deseas jugar de nuevo?",
                 caption="VOLVER A JUGAR",
                 style=wx.YES_NO,
             )
