@@ -1,7 +1,6 @@
-"""
-Created on 30-05-2022
-
-@author: matias
+"""!
+Clase ScoreBoard
+Encargada de la interfaz del tablero de puntaje.
 """
 import wx
 import wx.grid as wxgrid
@@ -10,6 +9,9 @@ from controller.DatabaseController import DatabaseController
 
 
 class ScoreBoard(wx.Panel):
+    ## Interfáz de tablero de puntaje
+    # @param parent clase padre.
+
     def __init__(self, parent):
         self.parent = parent
         self.vsizer = wx.BoxSizer(wx.VERTICAL)
@@ -38,12 +40,18 @@ class ScoreBoard(wx.Panel):
         self.SetSizer(self.vsizer)
         self.Layout()
 
+    ## Devuelve al menú anterior.
+    # @param evt evento.
     def back(self, evt):
+
         self.Destroy()
         self.parent.showMenu()
 
 
 class PointList(wx.Panel):
+
+    ## Interfáz de la grilla de puntaje, muestra el nombre y puntaje de los jugadores.
+    # @param parent clase padre.
     def __init__(self, parent):
         wx.Panel.__init__(self, parent, size=(100, 100))
 

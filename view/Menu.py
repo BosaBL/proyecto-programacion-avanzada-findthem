@@ -1,7 +1,6 @@
-"""
-Created on 15-05-2022
-
-@author: alvaro
+"""!
+Clase Menu
+Encargada de la interfáz visual del menú.
 """
 import wx
 from controller.ConfigExtractorController import ConfigExtractorController
@@ -9,6 +8,8 @@ from controller.ConfigExtractorController import ConfigExtractorController
 
 # class of new window to choose difficulty options
 class DifficultyPanel(wx.Panel):
+    ## Interfáz del menú de dificultad.
+    # @param parent clase padre.
     def __init__(self, parent):
         wx.Panel.__init__(self, parent, size=(500, 500))
 
@@ -35,27 +36,41 @@ class DifficultyPanel(wx.Panel):
         self.Show(True)
         self.Centre()
 
+    ## Devuelve al menú anterior
+    # @param evt evento
     def back(self, evt):
+
         self.Destroy()
         self.parent.showMenu()
 
+    ## Comienza el juego en la dificultad FACIL.
+    # @param evt evento
     def easyMode(self, evt):
         self.Destroy()
         config = ConfigExtractorController().getConfig("EASY")
         self.parent.startGame(config)
 
+    ## Comienza el juego en la dificultad MEDIA.
+    # @param evt evento
     def mediumMode(self, evt):
         self.Destroy()
         config = ConfigExtractorController().getConfig("MEDIUM")
         self.parent.startGame(config)
 
+    ## Comienza el juego en la dificultad DIFICIL.
+    # @param evt evento
     def hardMode(self, evt):
+
         self.Destroy()
         config = ConfigExtractorController().getConfig("HARD")
         self.parent.startGame(config)
 
+
 # main window creation class to function as menu
 class MenuPanel(wx.Panel):
+
+    ## Interfáz del menú principal.
+    # @param evt evento
     def __init__(self, parent):
         self.parent = parent
         wx.Panel.__init__(self, parent, size=(500, 500))
@@ -79,13 +94,19 @@ class MenuPanel(wx.Panel):
         self.buttonExit = wx.Button(self, -1, "SALIR", pos=(190, 280), size=(100, 30))
         self.buttonExit.Bind(wx.EVT_BUTTON, self.delete)
 
+    ## Muestra el menú de dificultad `view.Menu.DifficultyPanel`.
+    # @param event evento
     def difficulty(self, event):
         self.Destroy()
         self.panel = DifficultyPanel(self.parent)
 
+    ## Destruye la clase padre.
+    # @param event evento
     def delete(self, event):
         self.parent.Destroy()
 
+    ## Muestra el menú de dificultad `view.ScoreBoard`.
+    # @param event evento
     def scoreboard(self, evt):
         self.Destroy()
         self.parent.openScoreboard()

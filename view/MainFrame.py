@@ -1,7 +1,6 @@
-"""
-Created on 26-04-2022
-
-@author: alvaro
+"""!
+Clase MainFrame
+Es el frame principal, conteniendo a todo el resto de vistas mediante el uso de paneles.
 """
 import wx
 from view.GamePanel import GamePanel
@@ -25,6 +24,8 @@ class MainFrame(wx.Frame):
 
         self.showMenu()
 
+    ## Muestra el menú view.Menu.MenuPanel
+    #
     def showMenu(self):
         self.menuPanel = MenuPanel(self)
         self.menuPanel.Show()
@@ -37,6 +38,8 @@ class MainFrame(wx.Frame):
         self.Show()
         self.Centre()
 
+    ## Muestra el menú de difcultad view.Menu.DifficultyPanel
+    #
     def showDifficulty(self):
         self.difficultyPanel = DifficultyPanel(self)
         self.difficultyPanel.Show()
@@ -48,6 +51,8 @@ class MainFrame(wx.Frame):
         self.Show()
         self.Centre()
 
+    ## Muestra el panel de juego y lo comienza view.GamePanel
+    #
     def startGame(self, config: dict):
         self.gamePanel = GamePanel(self, config)
         self.gamePanel.Show()
@@ -57,6 +62,8 @@ class MainFrame(wx.Frame):
         self.Centre()
         self.Show()
 
+    ## Muestra el tablero de puintaje comienza view.ScoreBoard
+    #
     def openScoreboard(self):
         self.scoreboar = ScoreBoard(self)
         self.scoreboar.Show()

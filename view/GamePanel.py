@@ -1,3 +1,8 @@
+"""!
+Clase GamePanel
+Encargada de mostrar la interfáz del tablero de juego.
+"""
+
 # -- coding: utf-8 --
 import wx
 import wx.grid as gridLib
@@ -8,6 +13,10 @@ from controller.DatabaseController import DatabaseController
 
 
 class GamePanel(wx.Panel):
+
+    ##
+    # @param parent clase padre
+    # @param config dict: diccionario con las configuraciones de dificultad.
     def __init__(self, parent, config: dict):
         wx.Panel.__init__(self, parent=parent)
         self.SetBackgroundColour("turquoise")
@@ -116,7 +125,9 @@ class GamePanel(wx.Panel):
 
         self.SetSizerAndFit(self.sizer)
 
-    def _onClick(self, event):
+    ##
+    # @param event event
+    def onClick(self, event):
         cardPos = (int(event.GetRow()), int(event.GetCol()))
 
         if (
@@ -160,6 +171,8 @@ class GamePanel(wx.Panel):
             self.pickedCards = []
         self.gridBoard.ClearGrid()
 
+    ##
+    # Da vuelta todas las cartas.
     def turnBack(self):
         for i in range(self.matrixBoard.boardSize()[0]):
             for j in range(self.matrixBoard.boardSize()[1]):
@@ -173,12 +186,18 @@ class GamePanel(wx.Panel):
         self.pickedFlag = False
         self.gridBoard.ClearGrid()
 
+    ## Reescala una imagen.
+    # @param bitmap Bitmap: imagen.
+    # @param width int: nuevo ancho.
+    # @param height int: nuevo alto.
     def scaleBitmap(self, bitmap, width, height):
         image = wx.Bitmap.ConvertToImage(bitmap)
         image = image.Scale(width, height, wx.IMAGE_QUALITY_HIGH)
         result = wx.Bitmap(image)
         return result
 
+    ##
+    # Actualizador de intentos
     def triesUpdater(self):
         if int(self.config["identifier"]) != 0:
             self.tries -= 1
@@ -186,6 +205,8 @@ class GamePanel(wx.Panel):
             if self.tries == 0:
                 self.endGame()
 
+    ## Actualizador de tiempo.
+    # @param e evento
     def timeCounter(self, e):
         self.time -= 1
         self.minutes = self.time // 60
@@ -196,6 +217,8 @@ class GamePanel(wx.Panel):
             self.gameTimer.Stop()
             self.endGame()
 
+    ## Termina el juego.
+    #
     def endGame(self):
         self.pointLabelCounter.SetLabel(f"{self.points}")
         dialog = wx.MessageDialog(
@@ -220,7 +243,9 @@ class GamePanel(wx.Panel):
         dialog.Destroy()
         self._onLeaveClick()
 
-    def _onLeaveClick(self, e=None):
+    ## Termina el juego.
+    # @param e evento
+    def onLeaveClick(self, e=None):
         if e:
             dialog = wx.MessageDialog(
                 self,
@@ -236,7 +261,9 @@ class GamePanel(wx.Panel):
             self.Hide()
             self.parent.showMenu()
 
-    def _onAgainPlayClick(self, e=None):
+    ## Devuelve al menú de dificultad.
+    # @param e evento
+    def onAgainPlayClick(self, e=None):
         if e:
             dialog = wx.MessageDialog(
                 self,
@@ -248,6 +275,8 @@ class GamePanel(wx.Panel):
                 self.parent.showDifficulty()
                 self.Hide()
 
+    ## Calcula el puntaje total.
+    # @return total int: total de puntos obtenidos.
     def calculateTotalPoints(self):
         total = 0
         total += self.points

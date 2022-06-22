@@ -1,3 +1,7 @@
+"""!
+Controlador de model.Board
+"""
+
 from model.Board import Board
 from model.Card import Card
 from model.CardFinder import CardFinder
@@ -6,6 +10,9 @@ import random as rand
 
 
 class BoardController:
+    ##
+    # @param rows int: filas del tablero.
+    # @param cols int: columnas del tablero.
     def __init__(self, rows: int, cols: int):
         self.__rows = rows
         self.__cols = cols
@@ -14,6 +21,8 @@ class BoardController:
 
         self.__gameBoard = Board(rows, cols)
 
+    ## Genera una lista de Card.
+    # @return list[Card]: lista de cartas.
     def generateCardList(self):
 
         cardList = []
@@ -23,6 +32,7 @@ class BoardController:
 
         return cardList
 
+    ## Rellena y desordena el tablero de juego.
     def populateGameBoard(self):
 
         for _ in range((self.__rows * self.__cols) // 2):
@@ -32,6 +42,8 @@ class BoardController:
 
         self.__gameBoard.shuffleVector()
 
+    ##
+    # @return tuple(row,col): tamaño del tablero.
     def boardSize(self):
         return (self.__rows, self.__cols)
 

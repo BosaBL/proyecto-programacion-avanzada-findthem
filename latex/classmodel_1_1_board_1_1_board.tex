@@ -1,0 +1,95 @@
+\hypertarget{classmodel_1_1_board_1_1_board}{}\doxysection{model.\+Board.\+Board Class Reference}
+\label{classmodel_1_1_board_1_1_board}\index{model.Board.Board@{model.Board.Board}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classmodel_1_1_board_1_1_board_a06f64c7b115f09969c985aeec7516be7}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int rows, int cols)
+\item 
+def \mbox{\hyperlink{classmodel_1_1_board_1_1_board_ab641d46808ef76c4ea5865968b93bb87}{get\+Board\+Matrix}} (self)
+\item 
+def \mbox{\hyperlink{classmodel_1_1_board_1_1_board_ad4f5075f3c9d1d4482769b8e27228080}{get\+Size}} (self)
+\item 
+def \mbox{\hyperlink{classmodel_1_1_board_1_1_board_a3493a89593c6db445bfed79ff96d067d}{append\+Item}} (self, item)
+\begin{DoxyCompactList}\small\item\em Inserta un elemento al final de la matriz. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmodel_1_1_board_1_1_board_a6eb35d06a183f3c4d49ef21291c795b1}{set\+Item}} (self, idx, item)
+\begin{DoxyCompactList}\small\item\em Inserta un elemento en el índice deseado. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmodel_1_1_board_1_1_board_a853763e56625208d1efdd4a9ab737177}\label{classmodel_1_1_board_1_1_board_a853763e56625208d1efdd4a9ab737177}} 
+def {\bfseries shuffle\+Vector} (self)
+\begin{DoxyCompactList}\small\item\em Desordena la matríz. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmodel_1_1_board_1_1_board_abbdceff4722c6c3e32f80f6175796870}\label{classmodel_1_1_board_1_1_board_abbdceff4722c6c3e32f80f6175796870}} 
+def {\bfseries clear\+Board\+Vector} (self)
+\begin{DoxyCompactList}\small\item\em Limpia la matriz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_1_1_board_1_1_board_a06f64c7b115f09969c985aeec7516be7}\label{classmodel_1_1_board_1_1_board_a06f64c7b115f09969c985aeec7516be7}} 
+\index{model.Board.Board@{model.Board.Board}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!model.Board.Board@{model.Board.Board}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def model.\+Board.\+Board.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{rows,  }\item[{int}]{cols }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & int\+: filas del tablero. \\
+\hline
+{\em cols} & int\+: columnas del tablero. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodel_1_1_board_1_1_board_a3493a89593c6db445bfed79ff96d067d}\label{classmodel_1_1_board_1_1_board_a3493a89593c6db445bfed79ff96d067d}} 
+\index{model.Board.Board@{model.Board.Board}!appendItem@{appendItem}}
+\index{appendItem@{appendItem}!model.Board.Board@{model.Board.Board}}
+\doxysubsubsection{\texorpdfstring{appendItem()}{appendItem()}}
+{\footnotesize\ttfamily def model.\+Board.\+Board.\+append\+Item (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{item }\end{DoxyParamCaption})}
+
+
+
+Inserta un elemento al final de la matriz. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & \mbox{\hyperlink{namespacemodel_1_1_card}{Card}}\+: elemento. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmodel_1_1_board_1_1_board_ab641d46808ef76c4ea5865968b93bb87}\label{classmodel_1_1_board_1_1_board_ab641d46808ef76c4ea5865968b93bb87}} 
+\index{model.Board.Board@{model.Board.Board}!getBoardMatrix@{getBoardMatrix}}
+\index{getBoardMatrix@{getBoardMatrix}!model.Board.Board@{model.Board.Board}}
+\doxysubsubsection{\texorpdfstring{getBoardMatrix()}{getBoardMatrix()}}
+{\footnotesize\ttfamily def model.\+Board.\+Board.\+get\+Board\+Matrix (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+board\+Matrix list\mbox{[}int\mbox{]}\+: version matricial del tablero. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_board_1_1_board_ad4f5075f3c9d1d4482769b8e27228080}\label{classmodel_1_1_board_1_1_board_ad4f5075f3c9d1d4482769b8e27228080}} 
+\index{model.Board.Board@{model.Board.Board}!getSize@{getSize}}
+\index{getSize@{getSize}!model.Board.Board@{model.Board.Board}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily def model.\+Board.\+Board.\+get\+Size (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+tuple(row,cols)\+: retorna una tupla con el tamaño de la matríz. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_board_1_1_board_a6eb35d06a183f3c4d49ef21291c795b1}\label{classmodel_1_1_board_1_1_board_a6eb35d06a183f3c4d49ef21291c795b1}} 
+\index{model.Board.Board@{model.Board.Board}!setItem@{setItem}}
+\index{setItem@{setItem}!model.Board.Board@{model.Board.Board}}
+\doxysubsubsection{\texorpdfstring{setItem()}{setItem()}}
+{\footnotesize\ttfamily def model.\+Board.\+Board.\+set\+Item (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{idx,  }\item[{}]{item }\end{DoxyParamCaption})}
+
+
+
+Inserta un elemento en el índice deseado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & int\+: índice \\
+\hline
+{\em item} & \mbox{\hyperlink{namespacemodel_1_1_card}{Card}}\+: elemento. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+model/Board.\+py\end{DoxyCompactItemize}

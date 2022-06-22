@@ -1,7 +1,6 @@
-"""
-Created on 08-06-2022
-
-@author: matias
+"""!
+Clase Database
+Encargada de leer y escribir en la "base de datos" scores.csv
 """
 import csv
 import os
@@ -12,6 +11,8 @@ class Database:
         self.__BASEPATH = os.path.abspath(os.path.dirname("__file__"))
         self.__fields = ["Name", "Points"]
 
+    ## Añade un jugador a la base de datos
+    # @param player Player: jugador.
     def addPlayerToScoreBoard(self, player):
         with open(f"{self.__BASEPATH}/scores.csv", "a", newline="") as database:
             csv_writer = csv.DictWriter(database, fieldnames=self.__fields)
@@ -19,6 +20,8 @@ class Database:
                 {"Name": player.getName(), "Points": player.getPoints()}
             )
 
+    ##
+    # @returns list[players]: lista de jugadores.
     def readScoreBoard(self):
         with open(f"{self.__BASEPATH}/scores.csv", "r") as database:
             players = []
