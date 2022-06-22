@@ -193,6 +193,7 @@ class GamePanel(wx.Panel):
         self.TimeLabelCounter.SetLabel(f"{self.minutes:02}:{self.seconds:02}")
 
         if self.time <= 0:
+            self.gameTimer.Stop()
             self.endGame()
 
     def endGame(self):
